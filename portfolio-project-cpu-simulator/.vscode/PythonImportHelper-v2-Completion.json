@@ -1,0 +1,233 @@
+[
+    {
+        "label": "collections",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "collections",
+        "description": "collections",
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "Cache",
+        "importPath": "cache",
+        "description": "cache",
+        "isExtraImport": true,
+        "detail": "cache",
+        "documentation": {}
+    },
+    {
+        "label": "Memory",
+        "importPath": "memory",
+        "description": "memory",
+        "isExtraImport": true,
+        "detail": "memory",
+        "documentation": {}
+    },
+    {
+        "label": "CPU",
+        "importPath": "cpu",
+        "description": "cpu",
+        "isExtraImport": true,
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "Cache",
+        "kind": 6,
+        "importPath": "cache",
+        "description": "cache",
+        "peekOfCode": "class Cache:\n    # The actual cache is implemented as a python d.e. queue, by 'appending' we mimic the LFU behavior required.\n    # Inside of the d.e. queue, we are storing tuples of the format (<address>,<value>)\n    def __init__(self):\n        self.cache = collections.deque(maxlen=CACHE_SIZE)\n        self.flush_cache()\n    # Repeatedly append to the cache to flush the cache\n    def flush_cache(self):\n        for i in range(CACHE_SIZE):\n            self.cache.append((\"\", \"\"))",
+        "detail": "cache",
+        "documentation": {}
+    },
+    {
+        "label": "CACHE_SIZE",
+        "kind": 5,
+        "importPath": "cache",
+        "description": "cache",
+        "peekOfCode": "CACHE_SIZE = 16\n# This class implements the cache of the CPU as defined in the portfolio project outline document\nclass Cache:\n    # The actual cache is implemented as a python d.e. queue, by 'appending' we mimic the LFU behavior required.\n    # Inside of the d.e. queue, we are storing tuples of the format (<address>,<value>)\n    def __init__(self):\n        self.cache = collections.deque(maxlen=CACHE_SIZE)\n        self.flush_cache()\n    # Repeatedly append to the cache to flush the cache\n    def flush_cache(self):",
+        "detail": "cache",
+        "documentation": {}
+    },
+    {
+        "label": "CPU",
+        "kind": 6,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "class CPU:\n    def __init__(self):\n        self.cpu_counter = CPU_COUNTER_INIT_VALUE\n        self.registers = [0] * NUMBER_OF_REGISTERS\n        self.cache_flag = False\n        self.cache = Cache()\n        self.memory_bus = Memory()\n    def increment_cpu_counter(self):\n        self.cpu_counter += 1\n    def reset_cpu_counter(self):",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "convert_register_to_index",
+        "kind": 2,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "def convert_register_to_index(value):\n    return int(value[1:])\n# CPU class to implement the bulk of CPU Simulator requirements. Member properties include:\n# CPU Counter - Int representing the number of the instruction being parsed\n# Registers - List used to represent internal registers used by the CPU\n# Cache Flag - boolean representing whether or not the cache is to be used\n# Cache - instance of Cache object instantiated for CPU\n# Memory Bus - instance of Memory Bus object instantiated for CPU\nclass CPU:\n    def __init__(self):",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "CPU_COUNTER_INIT_VALUE",
+        "kind": 5,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "CPU_COUNTER_INIT_VALUE = 0\nNUMBER_OF_REGISTERS = 9\nADD_INSTRUCTION_OPERATOR = \"ADD\"\nADD_I_INSTRUCTION_OPERATOR = \"ADDI\"\nJUMP_INSTRUCTION_OPERATOR = \"J\"\nCACHE_INSTRUCTION_OPERATOR = \"CACHE\"\nCACHE_OFF_VALUE = 0\nCACHE_ON_VALUE = 1\nCACHE_FLUSH_VALUE = 2\n# Helper function to convert register string to index. I.e. register labelled 'R2' should correspond to int index 2",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "NUMBER_OF_REGISTERS",
+        "kind": 5,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "NUMBER_OF_REGISTERS = 9\nADD_INSTRUCTION_OPERATOR = \"ADD\"\nADD_I_INSTRUCTION_OPERATOR = \"ADDI\"\nJUMP_INSTRUCTION_OPERATOR = \"J\"\nCACHE_INSTRUCTION_OPERATOR = \"CACHE\"\nCACHE_OFF_VALUE = 0\nCACHE_ON_VALUE = 1\nCACHE_FLUSH_VALUE = 2\n# Helper function to convert register string to index. I.e. register labelled 'R2' should correspond to int index 2\ndef convert_register_to_index(value):",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "ADD_INSTRUCTION_OPERATOR",
+        "kind": 5,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "ADD_INSTRUCTION_OPERATOR = \"ADD\"\nADD_I_INSTRUCTION_OPERATOR = \"ADDI\"\nJUMP_INSTRUCTION_OPERATOR = \"J\"\nCACHE_INSTRUCTION_OPERATOR = \"CACHE\"\nCACHE_OFF_VALUE = 0\nCACHE_ON_VALUE = 1\nCACHE_FLUSH_VALUE = 2\n# Helper function to convert register string to index. I.e. register labelled 'R2' should correspond to int index 2\ndef convert_register_to_index(value):\n    return int(value[1:])",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "ADD_I_INSTRUCTION_OPERATOR",
+        "kind": 5,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "ADD_I_INSTRUCTION_OPERATOR = \"ADDI\"\nJUMP_INSTRUCTION_OPERATOR = \"J\"\nCACHE_INSTRUCTION_OPERATOR = \"CACHE\"\nCACHE_OFF_VALUE = 0\nCACHE_ON_VALUE = 1\nCACHE_FLUSH_VALUE = 2\n# Helper function to convert register string to index. I.e. register labelled 'R2' should correspond to int index 2\ndef convert_register_to_index(value):\n    return int(value[1:])\n# CPU class to implement the bulk of CPU Simulator requirements. Member properties include:",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "JUMP_INSTRUCTION_OPERATOR",
+        "kind": 5,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "JUMP_INSTRUCTION_OPERATOR = \"J\"\nCACHE_INSTRUCTION_OPERATOR = \"CACHE\"\nCACHE_OFF_VALUE = 0\nCACHE_ON_VALUE = 1\nCACHE_FLUSH_VALUE = 2\n# Helper function to convert register string to index. I.e. register labelled 'R2' should correspond to int index 2\ndef convert_register_to_index(value):\n    return int(value[1:])\n# CPU class to implement the bulk of CPU Simulator requirements. Member properties include:\n# CPU Counter - Int representing the number of the instruction being parsed",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "CACHE_INSTRUCTION_OPERATOR",
+        "kind": 5,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "CACHE_INSTRUCTION_OPERATOR = \"CACHE\"\nCACHE_OFF_VALUE = 0\nCACHE_ON_VALUE = 1\nCACHE_FLUSH_VALUE = 2\n# Helper function to convert register string to index. I.e. register labelled 'R2' should correspond to int index 2\ndef convert_register_to_index(value):\n    return int(value[1:])\n# CPU class to implement the bulk of CPU Simulator requirements. Member properties include:\n# CPU Counter - Int representing the number of the instruction being parsed\n# Registers - List used to represent internal registers used by the CPU",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "CACHE_OFF_VALUE",
+        "kind": 5,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "CACHE_OFF_VALUE = 0\nCACHE_ON_VALUE = 1\nCACHE_FLUSH_VALUE = 2\n# Helper function to convert register string to index. I.e. register labelled 'R2' should correspond to int index 2\ndef convert_register_to_index(value):\n    return int(value[1:])\n# CPU class to implement the bulk of CPU Simulator requirements. Member properties include:\n# CPU Counter - Int representing the number of the instruction being parsed\n# Registers - List used to represent internal registers used by the CPU\n# Cache Flag - boolean representing whether or not the cache is to be used",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "CACHE_ON_VALUE",
+        "kind": 5,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "CACHE_ON_VALUE = 1\nCACHE_FLUSH_VALUE = 2\n# Helper function to convert register string to index. I.e. register labelled 'R2' should correspond to int index 2\ndef convert_register_to_index(value):\n    return int(value[1:])\n# CPU class to implement the bulk of CPU Simulator requirements. Member properties include:\n# CPU Counter - Int representing the number of the instruction being parsed\n# Registers - List used to represent internal registers used by the CPU\n# Cache Flag - boolean representing whether or not the cache is to be used\n# Cache - instance of Cache object instantiated for CPU",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "CACHE_FLUSH_VALUE",
+        "kind": 5,
+        "importPath": "cpu",
+        "description": "cpu",
+        "peekOfCode": "CACHE_FLUSH_VALUE = 2\n# Helper function to convert register string to index. I.e. register labelled 'R2' should correspond to int index 2\ndef convert_register_to_index(value):\n    return int(value[1:])\n# CPU class to implement the bulk of CPU Simulator requirements. Member properties include:\n# CPU Counter - Int representing the number of the instruction being parsed\n# Registers - List used to represent internal registers used by the CPU\n# Cache Flag - boolean representing whether or not the cache is to be used\n# Cache - instance of Cache object instantiated for CPU\n# Memory Bus - instance of Memory Bus object instantiated for CPU",
+        "detail": "cpu",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_instructions",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_instructions():\n    instruction_file = open(INSTRUCTION_INPUT_FILE, 'r')\n    instructions = instruction_file.readlines()\n    instructions = list(map(lambda s: s.strip(), instructions))\n    return instructions\n# Generate list of data inputs to initialize the memory bus from.\n# Use lambda function to strip off '\\n' character from each line\ndef fetch_data():\n    data_file = open(DATA_INPUT_FILE, 'r')\n    data = data_file.readlines()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_data",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_data():\n    data_file = open(DATA_INPUT_FILE, 'r')\n    data = data_file.readlines()\n    data = list(map(lambda s: s.strip(), data))\n    return data\n# Method to write each value from data_input file to CPU's memory bus\ndef initialize_memory_bus(cpu):\n    data_loaded = fetch_data()\n    for data in data_loaded:\n        data_parsed = data.split(\",\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "initialize_memory_bus",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def initialize_memory_bus(cpu):\n    data_loaded = fetch_data()\n    for data in data_loaded:\n        data_parsed = data.split(\",\")\n        cpu.write_memory_bus(data_parsed[0], data_parsed[1])\n# Method to send instructions line-by-line to CPU object\ndef send_instructions_to_cpu(cpu):\n    instructions_loaded = fetch_instructions()\n    for instruction in instructions_loaded:\n        cpu.parse_instruction(instruction)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "send_instructions_to_cpu",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def send_instructions_to_cpu(cpu):\n    instructions_loaded = fetch_instructions()\n    for instruction in instructions_loaded:\n        cpu.parse_instruction(instruction)\n# Start of Python script to run the CPU simulator\nmy_cpu = CPU()\nprint(\"---------------------------------------------------\")\nprint(\"Welcome to the Python CPU Simulator!\")\nprint(\"---------------------------------------------------\")\nprint(\"Initializing Memory Bus from data input file...\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "INSTRUCTION_INPUT_FILE",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "INSTRUCTION_INPUT_FILE = \"instruction_input.txt\"\nDATA_INPUT_FILE = \"data_input.txt\"\n# Generate list of instructions from input file, use lambda function to strip off '\\n' character from each line\ndef fetch_instructions():\n    instruction_file = open(INSTRUCTION_INPUT_FILE, 'r')\n    instructions = instruction_file.readlines()\n    instructions = list(map(lambda s: s.strip(), instructions))\n    return instructions\n# Generate list of data inputs to initialize the memory bus from.\n# Use lambda function to strip off '\\n' character from each line",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "DATA_INPUT_FILE",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "DATA_INPUT_FILE = \"data_input.txt\"\n# Generate list of instructions from input file, use lambda function to strip off '\\n' character from each line\ndef fetch_instructions():\n    instruction_file = open(INSTRUCTION_INPUT_FILE, 'r')\n    instructions = instruction_file.readlines()\n    instructions = list(map(lambda s: s.strip(), instructions))\n    return instructions\n# Generate list of data inputs to initialize the memory bus from.\n# Use lambda function to strip off '\\n' character from each line\ndef fetch_data():",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "my_cpu",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "my_cpu = CPU()\nprint(\"---------------------------------------------------\")\nprint(\"Welcome to the Python CPU Simulator!\")\nprint(\"---------------------------------------------------\")\nprint(\"Initializing Memory Bus from data input file...\")\ninitialize_memory_bus(my_cpu)\nprint(\"Memory Bus successfully initialized\")\nprint(\"---------------------------------------------------\")\nprint(\"Sending instructions to CPU...\")\nsend_instructions_to_cpu(my_cpu)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Memory",
+        "kind": 6,
+        "importPath": "memory",
+        "description": "memory",
+        "peekOfCode": "class Memory:\n    def __init__(self):\n        # The actual memory bus is implemented as a python dictionary; Key = Address, Value = Value\n        self.memory_bus = {}\n        self.init_memory_bus()\n    # Method used to initialize memory bus, loops from 0 to Size of bus and converts iterator to binary string\n    def init_memory_bus(self):\n        for i in range(MEMORY_BUS_SIZE):\n            self.memory_bus['{0:08b}'.format(i)] = 0\n    def search_memory_bus(self, address):",
+        "detail": "memory",
+        "documentation": {}
+    },
+    {
+        "label": "MEMORY_BUS_SIZE",
+        "kind": 5,
+        "importPath": "memory",
+        "description": "memory",
+        "peekOfCode": "MEMORY_BUS_SIZE = 128\n# This class implements the 'memory bus' as defined in the portfolio project outline document\nclass Memory:\n    def __init__(self):\n        # The actual memory bus is implemented as a python dictionary; Key = Address, Value = Value\n        self.memory_bus = {}\n        self.init_memory_bus()\n    # Method used to initialize memory bus, loops from 0 to Size of bus and converts iterator to binary string\n    def init_memory_bus(self):\n        for i in range(MEMORY_BUS_SIZE):",
+        "detail": "memory",
+        "documentation": {}
+    }
+]
